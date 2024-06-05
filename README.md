@@ -1,1 +1,1 @@
-# vigilant-garbanzo
+# AI-Powered News Aggregator
