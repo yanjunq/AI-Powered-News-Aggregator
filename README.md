@@ -1,26 +1,50 @@
-# AI-Powered News Aggregator
-10. AI-Powered News Aggregator
-Backend: Develop models for users, news articles, categories, and preferences. Implement APIs for fetching and delivering news content.
-OpenAI API: Integrate with OpenAI to summarize news articles, generate personalized news feeds, and provide insights.
-Features:
-User authentication and profiles
-News aggregation from multiple sources
-AI-generated summaries and insights
-Personalized news feed based on user preferences
-Bookmarking and sharing of articles
-Implementation Tips:
-Django Backend:
+# Welcome to your Expo app 👋
 
-Use Django REST Framework (DRF) to build robust and efficient APIs.
-Implement authentication using Django's built-in system or third-party packages like django-allauth.
-Optimize database queries and API responses for performance.
-OpenAI Integration:
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-Use OpenAI's API for generating content, providing recommendations, and enhancing user interactions.
-Ensure proper handling of API rate limits and error responses.
-Implement caching mechanisms to reduce redundant API calls and improve performance.
-Docker (Optional):
+## Get started
 
-Containerize your Django application for consistent development and deployment environments.
-Use Docker Compose to manage multi-container applications (e.g., web server, database).
-Ensure proper configuration of environment variables and secrets management.
+1. Install dependencies
+
+   ```bash
+   npm install
+   ```
+
+2. Start the app
+
+   ```bash
+    npx expo start
+   ```
+
+In the output, you'll find options to open the app in a
+
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Get a fresh project
+
+When you're ready, run:
+
+```bash
+npm run reset-project
+```
+
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
