@@ -1,0 +1,103 @@
+# version: '3.8'
+
+# services:
+#   frontend:
+#     build:
+#       context: ./frontend
+#     ports:
+#       - "19000:19000"
+#       - "19001:19001"
+#       - "19002:19002"
+#     volumes:
+#       - ./frontend:/app
+#     depends_on:
+#       - backend
+
+#   backend:
+#     build:
+#       context: .  
+#       dockerfile: ./backend/Dockerfile  
+#     ports:
+#       - "1800:8000"  
+#     volumes:
+#       - ./backend:/app
+
+
+# version: '3.9'
+
+# services:
+#   frontend:
+#     build:
+#       context: ./frontend
+#     ports:
+#       - "19000:19000"
+#       - "19001:19001"
+#       - "19002:19002"
+#       - "8081:8081"  # Expose the Metro Bundler port
+#     volumes:
+#       - ./frontend:/app
+#     depends_on:
+#       - backend
+
+#   backend:
+#     build:
+#       context: .  # Set context to the root directory
+#       dockerfile: ./backend/Dockerfile  # Specify the Dockerfile location
+#     ports:
+#       - "1800:8000"  # Map port 1800 on host to port 8000 in container
+#     volumes:
+#       - .:/app  # Mount the entire project directory to /app
+
+# version: '3.9'
+
+# services:
+#   frontend:
+#     build:
+#       context: ./frontend
+#     ports:
+#       - "19000:19000"
+#       - "19001:19001"
+#       - "19002:19002"
+#       - "8082:8081"  # Change the host port to 8082 to avoid conflict
+#     volumes:
+#       - ./frontend:/app
+#     depends_on:
+#       - backend
+
+#   backend:
+#     build:
+#       context: .  # Set context to the root directory
+#       dockerfile: ./backend/Dockerfile  # Specify the Dockerfile location
+#     ports:
+#       - "1800:8000"  # Map port 1800 on host to port 8000 in container
+#     volumes:
+#       - .:/app  # Mount the entire project directory to /app
+
+
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8081:8081"
+      # - "19000:19000"
+      # - "19001:19001"
+      # - "19002:19002"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    network_mode: "host"  # Add this line
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "1800:8000"
+    volumes:
+      # - .:/app
+       - ./backend:/app
+

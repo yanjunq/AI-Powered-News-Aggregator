@@ -1,0 +1,14 @@
+# Backend .gitignore content
+venv/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*~
+db.sqlite3
+/media
+/static
+*.log
+*.log.*
+.env
