@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Text, useTheme } from "./Theme";
+import { Text, useTheme } from './Theme';
 import { RectButton, RectButtonProperties } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({

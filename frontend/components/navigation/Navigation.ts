@@ -1,14 +1,14 @@
 import { RouteProp, CompositeNavigationProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 
-export interface AuthNavigationProps<RouteName extends keyof AuthRoutes>{
+export interface AuthNavigationProps<RouteName extends keyof AuthRoutes> {
     navigation: CompositeNavigationProp<
-        StackNavigationProp<AuthRoutes, RouteName>,
-        StackNavigationProp<AuthRoutes, "Onboarding">
-    >;
+    StackNavigationProp<AuthRoutes, RouteName>,
+    DrawerNavigationProp<AppRoutes, "Home"> >;
     route: RouteProp<AuthRoutes, RouteName>;
+ }
 
-}
 
 export type AppRoutes = {
     Authentication: undefined;
