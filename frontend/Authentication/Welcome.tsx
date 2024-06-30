@@ -18,7 +18,7 @@ export const Welcome: React.FC<Partial<AuthNavigationProps<"Welcome">>> = ({ nav
                 <Box backgroundColor="background" borderTopLeftRadius="xl" justifyContent="space-evenly" alignItems="center" padding="xl" flex={1}>
                     <Text variant="title2">Let's get started</Text>
                     <Text variant="body" textAlign="center">Login to your account below or signup for an amazing experience</Text>
-                    <Button variant="primary" label="Login" onPress={() => navigation?.navigate('SignUp')}/>
+                    <Button variant="primary" label="Login" onPress={() => navigation?.navigate('Login')}/>
                     <Button label="Sign in" onPress={() => navigation?.navigate('SignUp')}/>
                     <Button label = "Forgot password?"onPress={() => navigation?.navigate("ForgotPassword")}/>
                 </Box>

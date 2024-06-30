@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Text, Button, useTheme} from '../components';
+import { Box, Text, Button, useTheme, TextInput} from '../components';
 import { AuthNavigationProps } from '../components/navigation/Navigation';
-import {Container} from '../components/Container';
+import {Container} from '../components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { TextInput as RNTextInput} from 'react-native';
-import {TextInput} from '../components/TextInput';
 import {Footer} from '../components/Footer';
 
 const schema = Yup.object().shape({

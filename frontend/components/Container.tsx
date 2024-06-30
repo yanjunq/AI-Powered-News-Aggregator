@@ -20,7 +20,7 @@ interface ContainerProps {
     pattern: 0 | 1 | 2;
 }
 
-export const Container = ({ children, footer, pattern }: ContainerProps) => {
+const Container = ({ children, footer, pattern }: ContainerProps) => {
     const insets = useSafeAreaInsets();
     const theme = useTheme();
     // const asset = assets[pattern];
@@ -59,3 +59,5 @@ export const Container = ({ children, footer, pattern }: ContainerProps) => {
         </KeyboardAwareScrollView>
     );
 };
+
+export default Container;
