@@ -1,10 +1,13 @@
 import React from 'react';
-import {View} from 'react-native';
-// import {Container} from "../components/Container";
+import { Box, Text, Button, useTheme } from '../components';
+import { AuthNavigationProps } from '../components/navigation/Navigation';
 
+export const PasswordChanged: React.FC<Partial<AuthNavigationProps<"PasswordChanged">>> = ({ navigation}) => {
+    const theme = useTheme();
 
-const PasswordChanged = () => {
-
+    return(
+        <Box flex={1} backgroundColor = "background">
+        
+        </Box>
+    );
 }
-
-export default PasswordChanged;

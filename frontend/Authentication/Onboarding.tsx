@@ -1,10 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
-// import {Container} from "../components/Container";
+import { Box, Text, Button, useTheme } from '../components';
+import { AuthNavigationProps } from '../components/navigation/Navigation';
 
+export const Onboarding: React.FC<Partial<AuthNavigationProps<"Onboarding">>> = ({ navigation}) => {
+    const theme = useTheme();
 
-const Onboarding = () => {
-
+    return(
+        <Box>
+        </Box>
+    );
 }
-
-export default Onboarding;

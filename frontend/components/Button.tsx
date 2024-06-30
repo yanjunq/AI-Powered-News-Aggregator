@@ -41,3 +41,4 @@ const Button = ({ variant, label, onPress, style }: ButtonProps) => {
 Button.defaultProps = { variant: "default" };
 
 export default Button;
+

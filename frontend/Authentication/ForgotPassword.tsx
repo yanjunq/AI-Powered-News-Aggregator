@@ -1,11 +1,12 @@
 import React from 'react';
-import { Image, Dimensions } from 'react-native';
-import { BorderlessButton } from 'react-native-gesture-handler';
+import { Box, Text, Button, useTheme } from '../components';
+import { AuthNavigationProps } from '../components/navigation/Navigation';
 
+export const ForgotPassword: React.FC<Partial<AuthNavigationProps<"ForgotPassword">>> = ({ navigation}) => {
+    const theme = useTheme();
 
-
-const ForgotPassword = () => {
-
+    return(
+        <Box flex={1} backgroundColor = "background">
+        </Box>
+    );
 }
-
-export default ForgotPassword;

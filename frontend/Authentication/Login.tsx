@@ -1,16 +1,13 @@
 import React from 'react';
-import {View} from 'react-native';
-// import {Container} from "../components/Container";
+import { Box, Text, Button, useTheme } from '../components';
+import { AuthNavigationProps } from '../components/navigation/Navigation';
 
+export const Login: React.FC<Partial<AuthNavigationProps<"Login">>> = ({ navigation}) => {
+    const theme = useTheme();
 
-const Login = () => {
-  //return (
-  //  <Container>
-  //     <View>
-  //       <Text>Login</Text>
-  //     </View>
-  //  </Container>
-  //);
+    return(
+        <Box flex={1} backgroundColor = "background">
+        
+        </Box>
+    );
 }
-
-export default Login;
