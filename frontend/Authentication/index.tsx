@@ -7,22 +7,6 @@ import {Welcome} from "./Welcome";
 // import ForgotPassword from './ForgotPassword';
 // import PasswordChanged from './PasswordChanged';
 
-// Define your stack navigator
-// const AuthenticationStack = createStackNavigator();
-
-// export const AuthenticationNavigator = () => {
-//   return (
-//     <AuthenticationStack.Navigator screenOptions={{ headerShown: false }}>
-//       {/* <AuthenticationStack.Screen name="Onboarding" component={Onboarding} /> */}
-//       <AuthenticationStack.Screen name="Welcome" component = {Welcome} />
-//       {/* <AuthenticationStack.Screen name="Login" component = {Login} /> */}
-//       {/* <AuthenticationStack.Screen name="SignUp" component={SignUp} />
-//       <AuthenticationStack.Screen name="ForgotPassword" component={ForgotPassword} />
-//       <AuthenticationStack.Screen name="PasswordChanged" component={PasswordChanged} /> */}
-//     </AuthenticationStack.Navigator>
-//   );
-// };
-
 const AuthenticationStack = createStackNavigator();
 
 export const AuthenticationNavigator = () => {
