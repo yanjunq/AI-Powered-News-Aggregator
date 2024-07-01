@@ -21,5 +21,6 @@ This project is an AI-Powered News Aggregator app built with Expo and React Nati
 - Expo CLI: `npm install -g expo-cli`
 - Python and Django
 - mySQL
+- Redis
 
 
