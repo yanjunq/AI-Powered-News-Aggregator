@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Button, useTheme, Container} from '../components';
+import { Box, Text,Container,TextInput} from '../components';
 import { HomeNavigationProps } from '../components/navigation/Navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -14,6 +14,8 @@ export const Preference: React.FC<Partial<HomeNavigationProps<"Preference">>> = 
                 <Text variant = "title1" textAlign="center" marginBottom="l">Hello TempName</Text>
             </Box>
             <Box>
+                {/* <TextInput></TextInput> */}
+                
                 <Text variant = "title1" textAlign="center" marginBottom="l">Create account</Text>
             </Box>   
         </Container>
