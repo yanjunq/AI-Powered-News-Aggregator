@@ -7,10 +7,18 @@ import * as Yup from 'yup';
 import { TextInput as RNTextInput} from 'react-native';
 import {Footer} from '../components/Footer';
 
+// const schema = Yup.object().shape({
+//     email:Yup.string().email('Invalid email').required('Required'),
+//     userName: Yup.string().required('Required'),
+//     password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+//     passwordConfirmation: Yup.string().equals([Yup.ref('password')], 'Passwords do not match').required('Required')
+// });
+
 const schema = Yup.object().shape({
-    email:Yup.string().email('Invalid email').required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    userName: Yup.string().required('Required'), 
     password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-    passwordConfirmation: Yup.string().equals([Yup.ref('password')], 'Passwords do not match').required('Required')
+    passwordConfirmation: Yup.string().oneOf([Yup.ref('password')], 'Passwords do not match').required('Required')
 });
 
 export const SignUp: React.FC<Partial<AuthNavigationProps<"SignUp">>> = ({ navigation}) => {
@@ -56,6 +64,22 @@ export const SignUp: React.FC<Partial<AuthNavigationProps<"SignUp">>> = ({ navig
                         onSubmitEditing={() => password.current?.focus()}
                     />
                 </Box>
+
+                <Box marginBottom="m">
+                    <TextInput 
+                        icon="username" 
+                        placeholder="Enter your name"
+                        onChangeText={handleChange('userName')}
+                        onBlur={handleBlur('userName')} 
+                        error={errors.email}
+                        touched={touched.email}
+                        autoComplete="name"
+                        returnKeyType="next"
+                        returnKeyLabel="next"
+                        onSubmitEditing={() => password.current?.focus()}
+                    />
+                </Box>
+
                 <Box marginBottom="m">
                     <TextInput 
                         ref={password}
@@ -89,14 +113,13 @@ export const SignUp: React.FC<Partial<AuthNavigationProps<"SignUp">>> = ({ navig
                     secureTextEntry
                 />
                 <Box alignItems="center" marginTop="m">
-                    <Button variant="primary" label="Create your account" onPress={handleSubmit} />
+                    <Button variant="primary" label="Create your account" onPress={()=>
+                    {handleSubmit;
+                        navigation?.navigate('Welcome');
+                    }} />
                 </Box>
             </Box>
      </Container>
-
-
-
-
     );
 
 }

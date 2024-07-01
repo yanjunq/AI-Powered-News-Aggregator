@@ -30,5 +30,6 @@ export type AuthRoutes = {
 };
 
 export type HomeRoutes = {
+    Preference: undefined;
     NewsPage: undefined;
 };
