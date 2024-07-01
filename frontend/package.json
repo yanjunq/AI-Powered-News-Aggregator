@@ -21,6 +21,7 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.3.29",
     "@shopify/restyle": "^2.4.4",
+    "axios": "^1.7.2",
     "expo": "~51.0.17",
     "expo-constants": "~16.0.2",
     "expo-font": "~12.0.7",

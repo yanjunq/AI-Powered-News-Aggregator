@@ -64,7 +64,7 @@ export const SignUp: React.FC<Partial<AuthNavigationProps<"SignUp">>> = ({ navig
                         onSubmitEditing={() => password.current?.focus()}
                     />
                 </Box>
-
+                
                 <Box marginBottom="m">
                     <TextInput 
                         icon="username" 

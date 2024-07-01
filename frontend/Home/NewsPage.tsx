@@ -26,6 +26,7 @@ export const NewsPage: React.FC<Partial<HomeNavigationProps<"NewsPage">>> = ({ n
                 <Text variant = "title1" textAlign="center" marginBottom="l">Create account</Text>
             </Box>
            <Box>
+            
 
            </Box>
         

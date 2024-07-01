@@ -20,6 +20,7 @@ export const Preference: React.FC<Partial<HomeNavigationProps<"Preference">>> = 
     const [selectedCategories, setSelectedCategories] = React.useState<string[]>([]);
     const [searchQuery, setSearchQuery] = React.useState<string>('');
     const [filteredCategories, setFilteredCategories] = React.useState<string[]>(categories);
+    const [checkFiveCategories, setCheckFiveCategories] = React.useState<boolean>(false);
 
 
     const handleSelectionChange = (selected: string[]) => {
@@ -37,9 +38,9 @@ export const Preference: React.FC<Partial<HomeNavigationProps<"Preference">>> = 
     }
 
     const handleNextStep = () =>{
-        selectedCategories.length >=5 ? navigation?.navigate("NewsPage") : alert("Please select at least 5 categories")
+        selectedCategories.length >=5 ? navigation?.navigate("NewsPage") : setCheckFiveCategories(true);
     }
-    
+
     //since database have set up, we can use this function to fetch the categories
     // const fetchCategories = async () => {
     //     axios.get('http://localhost:3000/categories')
@@ -62,6 +63,8 @@ export const Preference: React.FC<Partial<HomeNavigationProps<"Preference">>> = 
             <Box>
                 {/* need to change this to the user's name */}
                 <Text variant = "title1" textAlign="center" marginBottom="l">Hello TempName</Text>
+                <Text variant = "title1" textAlign="center" marginBottom="l">Select your interested categories!!</Text>
+                
             </Box>
             <Box marginBottom="m">
                 <TextInput
@@ -74,7 +77,12 @@ export const Preference: React.FC<Partial<HomeNavigationProps<"Preference">>> = 
             <Box>
                 <PreferenceBox categories = {filteredCategories} onSelectionChange={handleSelectionChange} />
             </Box>
-
+            {checkFiveCategories ? 
+             <Box marginBottom="m">
+                <Text variant="body" >Please select at least 5 categories</Text>
+             </Box> 
+            : null
+            }
             <Box  marginTop="l">
                 <Button variant='primary' label = "Next!!" onPress={handleNextStep}></Button>
             </Box> 
