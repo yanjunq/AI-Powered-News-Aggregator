@@ -11,6 +11,7 @@ import { AppRoutes } from '../../components/navigation/Navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from '../../components/Theme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { HomeNavigator } from '../../Home';
 
 const AppStack = createStackNavigator<AppRoutes>();
 
@@ -20,7 +21,7 @@ export default function HomeScreen() {
       <SafeAreaProvider>
         <AppStack.Navigator>
           <AppStack.Screen name="Authentication" component={AuthenticationNavigator} />
-          {/* <AppStack.Screen name="Home" component={HomeNavigator} /> */}
+          <AppStack.Screen name="Home" component={HomeNavigator} />
         </AppStack.Navigator>
       </SafeAreaProvider>
   </ThemeProvider>

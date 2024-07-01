@@ -10,6 +10,11 @@ export interface AuthNavigationProps<RouteName extends keyof AuthRoutes> {
  }
 
 
+ export interface HomeNavigationProps<RouteName extends keyof HomeRoutes> {
+    navigation: DrawerNavigationProp<HomeRoutes, RouteName>;
+    route: RouteProp<HomeRoutes, RouteName>;
+  }
+
 export type AppRoutes = {
     Authentication: undefined;
     Home: undefined;
@@ -25,5 +30,5 @@ export type AuthRoutes = {
 };
 
 export type HomeRoutes = {
-
+    NewsPage: undefined;
 };

@@ -26,6 +26,3 @@ export const Welcome: React.FC<Partial<AuthNavigationProps<"Welcome">>> = ({ nav
         </Box>
     );
 }
-
-
-
