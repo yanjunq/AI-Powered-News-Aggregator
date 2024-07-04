@@ -16,14 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .view import get_categories, get_news, store_selected_categories, clear_cache
+from .views import CategoryList, UserCreateView, UserUpdateView, UserDetailView, UserListView
+# from .view import get_categories, get_news, store_selected_categories, clear_cache
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('categories/', get_categories, name='get_categories'),
-    path('news/', get_news, name='get_news'),
-    path('selected_categories/', store_selected_categories, name='store_selected_categories'),
-    path('clear_cache/', clear_cache, name='clear_cache'),
+    path('categories/', CategoryList.as_view(), name='category-list'),
+    path('users/create/create', UserCreateView.as_view(), name='user-create'),
+    path('users/update/<str:email>/', UserUpdateView.as_view(), name='user-update'),
+    path('users/detail/<str:email>/', UserDetailView.as_view(), name='user-detail'),
+    # path('news/', get_news, name='get_news'),
+    # path('selected_categories/', store_selected_categories, name='store_selected_categories'),
+    # path('clear_cache/', clear_cache, name='clear_cache'),
 ]
 
 

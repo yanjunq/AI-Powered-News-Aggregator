@@ -25,18 +25,29 @@ class UserSerializer(serializers.ModelSerializer):
         
     
     def update(self, instance, validated_data):
-        prefer_categories = validated_data.pop('prefer_categories')
+        prefer_categories = validated_data.pop('prefer_categories', [])
         instance.email = validated_data.get('email', instance.email)
         instance.username = validated_data.get('username', instance.username)
-        instance.password = validated_data.get('password', instance.password)
+        
+        password = validated_data.get('password')
+        if password:
+            instance.set_password(password)
+        
         instance.save()
         instance.prefer_categories.set(prefer_categories)
         return instance
     
+    def getUserName(self, instance):
+        return {
+            'email': instance.email,
+            'username': instance.username
+        }
+
+        
 
 class PopularPreferenceSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
-    
+
     class Meta:
         model = PopularPreference
         fields = ['category']

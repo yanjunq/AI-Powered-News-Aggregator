@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 from decouple import Config, Csv
 import environ
+import dotenv
+import dj_database_url
+from django.core.exceptions import ImproperlyConfigured
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,13 +38,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'backend',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend',
+    
 ]
 
 MIDDLEWARE = [
@@ -141,22 +145,20 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 # database 
-config = Config()
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', default='3306'),
-    }
-}
-
-
-# Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
+
+DATABASES = {
+    "default": dj_database_url.parse(
+        url = env('DATABASE_URL'),
+        conn_max_age=600, conn_health_checks=True
+    )
+}
+
+# # Initialise environment variables
 News_API_KEY = env('News_API_KEY')
 News_API = env('News_API')
