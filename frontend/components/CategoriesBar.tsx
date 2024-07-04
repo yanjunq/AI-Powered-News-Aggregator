@@ -10,10 +10,10 @@ type CategoriesBarProps = {
 };
 
 const CategoriesBar: React.FC<CategoriesBarProps> = ({categories, onCategoryPress}) => {
-    const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(null);
-    
+    const [selectedCategory, setSelectedCategory] = useState(null);
+
     const handlePress = (item: any) => {
-        setSelectedCategoryIndex(item.id);
+        setSelectedCategory(item);
         onCategoryPress(item);
     }
 
@@ -25,14 +25,14 @@ const CategoriesBar: React.FC<CategoriesBarProps> = ({categories, onCategoryPres
               <TouchableOpacity
                 style={[
                   styles.categoryContainer,
-                  selectedCategoryIndex === item.id && styles.selectedCategoryContainer
+                  selectedCategory === item && styles.selectedCategoryContainer
                 ]}
                 onPress={() => handlePress(item)}
               >
-                {item.icon && <MaterialIcons name={item.icon} size={24} color={selectedCategoryIndex === item.id ? 'white' : 'black'} />}
+                {item.icon && <MaterialIcons name={item.icon} size={24} color={selectedCategory  === item ? 'white' : 'black'} />}
                 <Text style={[
                   styles.categoryText,
-                  selectedCategoryIndex === item.id && styles.selectedCategoryText
+                  selectedCategory === item && styles.selectedCategoryText
                 ]}>
                   {item.title}
                 </Text>
@@ -44,8 +44,7 @@ const CategoriesBar: React.FC<CategoriesBarProps> = ({categories, onCategoryPres
             contentContainerStyle={styles.listContainer}
           />
         </View>
-      );
-
+      );  
 }
 
 const styles = StyleSheet.create({

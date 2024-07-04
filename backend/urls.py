@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import CategoryList, UserCreateView, UserUpdateView, UserDetailView, UserListView
+from .views import CategoryList, UserCreateView, UserUpdateView, UserDetailView, UserListView, UserUpdatePreferCategoreisView, UserUpdatePasswordView
+
 # from .view import get_categories, get_news, store_selected_categories, clear_cache
 
 urlpatterns = [
@@ -25,6 +26,9 @@ urlpatterns = [
     path('users/create/create', UserCreateView.as_view(), name='user-create'),
     path('users/update/<str:email>/', UserUpdateView.as_view(), name='user-update'),
     path('users/detail/<str:email>/', UserDetailView.as_view(), name='user-detail'),
+    path('users/update-prefer-categories/<str:email>',UserUpdatePreferCategoreisView.as_view(), name='user-update-prefer-categories'),
+    path('users/update-password/<str:email>/', UserUpdatePasswordView.as_view(), name='user-update-password'),
+
     # path('news/', get_news, name='get_news'),
     # path('selected_categories/', store_selected_categories, name='store_selected_categories'),
     # path('clear_cache/', clear_cache, name='clear_cache'),

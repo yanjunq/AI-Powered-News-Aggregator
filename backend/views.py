@@ -40,53 +40,36 @@ class UserDetailView(APIView):
 
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer     
+    serializer_class = UserSerializer    
 
-
-# def get_categories(request):
-#     categories = cache.get('categories')
-#     if not categories:
-#         categories = list(Category.objects.values())
-#         cache.set('categories', categories)
-#     return JsonResponse(categories, safe=False)
-
-
-
-# def update_category(request):
-#     if request.method == 'POST':
-#         category_name = request.POST.get()
-
-# def get_news(request):
-#     categories = request.GET.get('categories')
-#     offset = int(request.Get.get('offset', 0))
-#     limit = int(request.GET.get('limit', 10))
-#     cache_key = f"news_{','.join(categories)}_{offset}_{limit}"
-#     news_items = cache.get(cache_key)
-
-#     if not news_items:
-#         News_API = "https://newsdata.io/api/1/news?apikey=pub_47525fccf477fc8cbe0d2f1df4d7bff50ae09&q=" + 
+class UserUpdatePreferCategoreisView(APIView):
+     def patch(self, request, email):
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         
-
-# @csrf_exempt
-# def clear_cache(request):
-#     if request.method == 'POST':
-#         cache.clear()
-#         return JsonResponse({'message': 'Cache cleared successfully'})
-#     return JsonResponse({'error': 'Invalid request method'}, status=400)
-    
-    
-
-    
-
-
-     
-    
-
-
-
-    
+        serializer = UserSerializer()
+        prefer_categories = request.data.get('prefer_categories')
+        if not prefer_categories:
+            return Response({"error": "Prefer categories are required"}, status=status.HTTP_400_BAD_REQUEST)
         
-    
+        serializer.update_prefer_categories(user, prefer_categories)
+        return Response({"success": "Prefer categories updated successfully"}, status=status.HTTP_200_OK)
 
 
+class UserUpdatePasswordView(APIView):
+    def patch(self, request, email):
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = UserSerializer()
+        password = request.data.get('password')
+        if not password:
+            return Response({"error": "Password is required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        serializer.update_password(user, password)
+        return Response({"success": "Password updated successfully"}, status=status.HTTP_200_OK)
 

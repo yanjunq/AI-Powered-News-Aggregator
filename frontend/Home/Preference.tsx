@@ -39,24 +39,32 @@ export const Preference: React.FC<Partial<HomeNavigationProps<"Preference">>> = 
 
     const handleNextStep = () =>{
         selectedCategories.length >=5 ? navigation?.navigate("NewsPage") : setCheckFiveCategories(true);
+        // await storeSelectedCategories();
     }
 
     //since database have set up, we can use this function to fetch the categories
-    // const fetchCategories = async () => {
-    //     axios.get('http://localhost:3000/categories')
-    //     .then((response)=>{
-    //         setCategories(response.data);
-    //         setFilteredCategories(response.data);
-    //     })
-    //     .catch((error)=>{
-    //         console.log(error);
-    //     }) 
+    const fetchCategories = async () => {
+        axios.get('http://localhost:8000/categories/')
+        .then((response)=>{
+            // setCategories(response.data);
+            setFilteredCategories(response.data);
+        })
+        .catch((error)=>{
+            console.log(error);
+        }) 
+    }
+    
+    const storeSelectedCategories = async () => {
 
-    // }
+            axios.post('http://localhost:8000/categories', {
+                preference: selectedCategories 
+            }).catch((error)=>{console.log(error)});
 
-    // useEffect(()=>{
-    //     fetchCategories();
-    // },[])
+    };
+
+    useEffect(()=>{
+        fetchCategories();
+    },[])
 
     return(
         <Container pattern={1} >
