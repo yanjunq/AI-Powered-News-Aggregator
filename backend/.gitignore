@@ -12,3 +12,8 @@ db.sqlite3
 *.log
 *.log.*
 .env
+
+# Virtual environment
+../venv/
+../db.sqlite3
+
