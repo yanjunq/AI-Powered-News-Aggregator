@@ -7,10 +7,10 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 from django.conf import settings
-from .models import Category
-from .serializers import CategorySerializer
-from .models import User
-from .serializers import UserSerializer
+from ..models import Category
+from ..serializers import CategorySerializer
+from ..models import User
+from ..serializers import UserSerializer
 import json
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,

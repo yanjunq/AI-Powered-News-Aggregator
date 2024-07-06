@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import CategoryList, UserCreateView, UserUpdateView, UserDetailView, UserListView, UserUpdatePreferCategoreisView, UserUpdatePasswordView
+from .views.users_views import CategoryList, UserCreateView, UserUpdateView, UserDetailView, UserListView, UserUpdatePreferCategoreisView, UserUpdatePasswordView
 from django.contrib import admin
 from django.urls import path, include
-from .views import TokenObtainPairView, TokenRefreshView
+from .views.users_views import TokenObtainPairView, TokenRefreshView
 
 # from .view import get_categories, get_news, store_selected_categories, clear_cache
 

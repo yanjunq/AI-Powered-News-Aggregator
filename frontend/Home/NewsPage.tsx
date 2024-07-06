@@ -14,6 +14,8 @@ export const NewsPage: React.FC<Partial<HomeNavigationProps<"NewsPage">>> = ({ n
     const theme = useTheme();
     const [categories, setCategories] = useState<string[]>([]);
 
+
+
     return(
         <Container pattern={1} >
             <Box>
