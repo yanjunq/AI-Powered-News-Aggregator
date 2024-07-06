@@ -3,19 +3,34 @@ import React, { useState } from 'react';
 import {Text} from './';
 import {View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'; 
+import { jwtDecode } from 'jwt-decode';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 type CategoriesBarProps = {
   categories: Array<any>;
-  onCategoryPress: (item: any) => void; // Replace 'any' with the actual type of 'item' later 
+  onCategorySelect: (category: string) => void;
 };
 
-const CategoriesBar: React.FC<CategoriesBarProps> = ({categories, onCategoryPress}) => {
-    const [selectedCategory, setSelectedCategory] = useState(null);
+const CategoriesBar: React.FC<CategoriesBarProps> = ({categories, onCategorySelect}) => {
+    const [selectedCategory, setSelectedCategory] = useState("");
+    const [userEmail, setUserEmail] = useState("");
 
-    const handlePress = (item: any) => {
+    const handlePress = async (item: string) => {
         setSelectedCategory(item);
-        onCategoryPress(item);
-    }
+        onCategorySelect(item);
+        
+        const token = await AsyncStorage.getItem('token');
+        return axios.post(
+          'http://localhost:8000/categories/update_category_news/',
+          { category : item},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );  
+    };
 
     return (
         <View style={styles.container}>

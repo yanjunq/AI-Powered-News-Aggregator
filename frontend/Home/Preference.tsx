@@ -75,7 +75,7 @@ export const Preference: React.FC<Partial<HomeNavigationProps<"Preference">>> = 
             throw new Error('Token not found');
           }
       
-        const response = await axios.get('http://localhost:8000/users/me/', {
+        const response = await axios.get('http://localhost:8000/users/user_name', {
             headers: {
               Authorization: `Bearer ${token}`,
             },

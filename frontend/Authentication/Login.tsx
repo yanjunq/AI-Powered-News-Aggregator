@@ -8,7 +8,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from 'axios';
 
-
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
@@ -26,6 +25,7 @@ const loginUser = async(email:string, password:string) => {
       const {access, refresh} = response.data;
       await AsyncStorage.setItem('token', access);
       await AsyncStorage.setItem('refresh', refresh);
+
       return response.data;
     } catch (error) {
       console.error('Error logging in:', error);
