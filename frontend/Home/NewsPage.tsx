@@ -10,8 +10,6 @@ const HomeStack = createStackNavigator();
 
 // just for testing, still wating for the database
 
-
-
 export const NewsPage: React.FC<Partial<HomeNavigationProps<"NewsPage">>> = ({ navigation}) => {
     const theme = useTheme();
     const [categories, setCategories] = useState<string[]>([]);

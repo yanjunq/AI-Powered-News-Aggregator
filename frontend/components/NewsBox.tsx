@@ -17,7 +17,7 @@ const NewsBoxProps: React.FC<NewsBoxProps> = ({categories}) => {
             return obj;
         }, {});
     };
-
+    
     const [readCategories, setReadCategories] = useState(initializeCategories(categories));
     const [newsItem, setNewsItem] = useState({});
     
