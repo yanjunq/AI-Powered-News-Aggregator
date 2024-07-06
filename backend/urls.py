@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import CategoryList, UserCreateView, UserUpdateView, UserDetailView, UserListView, UserUpdatePreferCategoreisView, UserUpdatePasswordView
+from django.contrib import admin
+from django.urls import path, include
+from .views import TokenObtainPairView, TokenRefreshView
 
 # from .view import get_categories, get_news, store_selected_categories, clear_cache
 
@@ -26,8 +29,12 @@ urlpatterns = [
     path('users/create/create', UserCreateView.as_view(), name='user-create'),
     path('users/update/<str:email>/', UserUpdateView.as_view(), name='user-update'),
     path('users/detail/<str:email>/', UserDetailView.as_view(), name='user-detail'),
-    path('users/update-prefer-categories/<str:email>',UserUpdatePreferCategoreisView.as_view(), name='user-update-prefer-categories'),
+    path('users/update-prefer-categories/',UserUpdatePreferCategoreisView.as_view(), name='user-update-prefer-categories'),
     path('users/update-password/<str:email>/', UserUpdatePasswordView.as_view(), name='user-update-password'),
+
+    path('admin/', admin.site.urls),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # path('news/', get_news, name='get_news'),
     # path('selected_categories/', store_selected_categories, name='store_selected_categories'),

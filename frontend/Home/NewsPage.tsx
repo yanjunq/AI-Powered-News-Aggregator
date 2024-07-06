@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Box, Text, Button, useTheme, Container, NewsBox} from '../components';
 import { HomeNavigationProps } from '../components/navigation/Navigation';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,17 +10,11 @@ const HomeStack = createStackNavigator();
 
 // just for testing, still wating for the database
 
-const categories: string[] = [
-    'Category 1',
-    'Category 2',
-    'Category 3',
-    'Category 4',
-    'Category 5',
-];
+
 
 export const NewsPage: React.FC<Partial<HomeNavigationProps<"NewsPage">>> = ({ navigation}) => {
     const theme = useTheme();
-
+    const [categories, setCategories] = useState<string[]>([]);
 
     return(
         <Container pattern={1} >

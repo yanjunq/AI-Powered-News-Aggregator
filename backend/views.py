@@ -2,7 +2,9 @@ import requests
 from django.core.cache import cache
 from rest_framework import generics
 from rest_framework.views import APIView
-from rest_framework.response import Response, status
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 from django.conf import settings
 from .models import Category
@@ -10,8 +12,20 @@ from .serializers import CategorySerializer
 from .models import User
 from .serializers import UserSerializer
 import json
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from django.urls import path
 
-class CategoryList(GeneratorExit.ListAPIView):
+#token
+urlpatterns = [
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
+
+
+class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
@@ -43,33 +57,28 @@ class UserListView(generics.ListAPIView):
     serializer_class = UserSerializer    
 
 class UserUpdatePreferCategoreisView(APIView):
-     def patch(self, request, email):
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request):
+        user = request.user
         serializer = UserSerializer()
-        prefer_categories = request.data.get('prefer_categories')
+        prefer_categories = request.get.data('prefer_categories')
         if not prefer_categories:
             return Response({"error": "Prefer categories are required"}, status=status.HTTP_400_BAD_REQUEST)
-        
+    
         serializer.update_prefer_categories(user, prefer_categories)
         return Response({"success": "Prefer categories updated successfully"}, status=status.HTTP_200_OK)
 
-
 class UserUpdatePasswordView(APIView):
-    def patch(self, request, email):
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request):
+        user = request.user 
         serializer = UserSerializer()
         password = request.data.get('password')
         if not password:
-            return Response({"error": "Password is required"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "Password not provided"}, status=400)
         
-        serializer.update_password(user, password)
-        return Response({"success": "Password updated successfully"}, status=status.HTTP_200_OK)
+        updated_user = serializer.update_password(user, password)
+        return Response(UserSerializer(updated_user).data, status=200)
 

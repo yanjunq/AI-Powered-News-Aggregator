@@ -6,6 +6,7 @@ import { CommonActions } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from 'axios';
 
 
 const LoginSchema = Yup.object().shape({
@@ -15,6 +16,22 @@ const LoginSchema = Yup.object().shape({
       .max(50, "Too Long!")
       .required("Required"),
   });
+
+const loginUser = async(email:string, password:string) => {
+    try {
+      const response = await axios.post('http://localhost:8000/api/token/', {
+        email,
+        password,
+      });
+      const {access, refresh} = response.data;
+      await AsyncStorage.setItem('token', access);
+      await AsyncStorage.setItem('refresh', refresh);
+      return response.data;
+    } catch (error) {
+      console.error('Error logging in:', error);
+      throw error;
+    }   
+};
 
 export const Login: React.FC<Partial<AuthNavigationProps<"Login">>> = ({ navigation}) => {
     const {
@@ -28,22 +45,31 @@ export const Login: React.FC<Partial<AuthNavigationProps<"Login">>> = ({ navigat
       } = useFormik({
         validationSchema: LoginSchema,
         initialValues: { email: "", password: "", remember: false },
-        onSubmit: () =>
-          navigation?.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{ name: "Home" }],
-            })
-          ),
+        onSubmit: async () => {
+          try {
+            const data = await loginUser(values.email, values.password);
+            await AsyncStorage.setItem('token', data.access);
+            navigation?.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: 'Home' }],
+              })
+            );
+          } catch (error) {
+            console.error(error);
+            alert('Login failed');
+          }
+        },
       });
+
       const password = useRef<RNTextInput>(null);
-    //   const footer = (
-    //     <Footer
-    //       title="Don't have an account?"
-    //       action="Sign Up here"
-    //       onPress={() => navigation.navigate("SignUp")}
-    //     />
-    //   );
+      // const footer = (
+      //   <Footer
+      //     title="Don't have an account?"
+      //     action="Sign Up here"
+      //     onPress={() => navigation.navigate("SignUp")}
+      //   />
+      // );
     
       return (
         // <Container pattern={0} {...{ footer }}>

@@ -28,7 +28,6 @@ const NewsBoxProps: React.FC<NewsBoxProps> = ({categories}) => {
 
         <ScrollView>
             <Box>
-                
             </Box>
             <Box>
                 <Button label = "Load more" onPress = {()=>{}}/>
