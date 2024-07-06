@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import JsonResponse
 from django.conf import settings
 from ..models import Category
@@ -40,16 +41,6 @@ class UserUpdateView(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'email'
-    
-class UserDetailView(APIView):
-    def get(self, request, email):
-        try:
-            user = User.objects.get(email=email)
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
-        except User.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-
 
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
@@ -57,6 +48,7 @@ class UserListView(generics.ListAPIView):
 
 class UserUpdatePreferCategoreisView(APIView):
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def patch(self, request):
         user = request.user
@@ -70,8 +62,9 @@ class UserUpdatePreferCategoreisView(APIView):
 
 class UserUpdatePasswordView(APIView):
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
-    def patch(self, request):
+    def post(self, request):
         user = request.user 
         serializer = UserSerializer()
         password = request.data.get('password')

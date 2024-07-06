@@ -20,22 +20,26 @@ from .views.users_views import CategoryList, UserCreateView, UserUpdateView, Use
 from django.contrib import admin
 from django.urls import path, include
 from .views.users_views import TokenObtainPairView, TokenRefreshView
+from .views import preference_views
+from preference_views import update_category_news, get_Category_News, refresh_news
 
 # from .view import get_categories, get_news, store_selected_categories, clear_cache
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('categories/', CategoryList.as_view(), name='category-list'),
-    path('users/create/create', UserCreateView.as_view(), name='user-create'),
-    path('users/update/<str:email>/', UserUpdateView.as_view(), name='user-update'),
-    path('users/detail/<str:email>/', UserDetailView.as_view(), name='user-detail'),
+    path('users/create/create/', UserCreateView.as_view(), name='user-create'),
+    path('users/update/', UserUpdateView.as_view(), name='user-update'),
     path('users/update-prefer-categories/',UserUpdatePreferCategoreisView.as_view(), name='user-update-prefer-categories'),
-    path('users/update-password/<str:email>/', UserUpdatePasswordView.as_view(), name='user-update-password'),
+    path('users/update-password/', UserUpdatePasswordView.as_view(), name='user-update-password'),
+    
 
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-
+    path('categories/update_category_news/', update_category_news.as_view(), name='update_category_news'),
+    path('categories/get_Category_News/<str:category>', get_Category_News.as_view(), name='get_Category_News'),
+    path('categories/refresh_news/', refresh_news.as_view(), name='refresh_news'),
     # path('news/', get_news, name='get_news'),
     # path('selected_categories/', store_selected_categories, name='store_selected_categories'),
     # path('clear_cache/', clear_cache, name='clear_cache'),
