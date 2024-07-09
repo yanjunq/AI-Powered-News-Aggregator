@@ -9,9 +9,9 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import JsonResponse
 from django.conf import settings
 from ..models import Category
-from ..serializers import CategorySerializer
+from ..serializers.serializers import CategorySerializer
 from ..models import User
-from ..serializers import UserSerializer
+from ..serializers.serializers import UserSerializer
 import json
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,

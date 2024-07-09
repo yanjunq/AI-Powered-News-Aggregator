@@ -16,12 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views.users_views import CategoryList, UserCreateView, UserUpdateView, UserDetailView, UserListView, UserUpdatePreferCategoreisView, UserUpdatePasswordView
+from .views.users_views import CategoryList, UserCreateView, UserUpdateView, UserListView, UserUpdatePreferCategoreisView, UserUpdatePasswordView
 from django.contrib import admin
 from django.urls import path, include
-from .views.users_views import TokenObtainPairView, TokenRefreshView
-from .views import preference_views
-from preference_views import update_category_news, get_Category_News, refresh_news
+from .views import TokenObtainPairView, TokenRefreshView
+# from views.preference_views import update_category_news, get_Category_News, refresh_news
+from .views import GetCategoryNewsView, refresh_news, update_category_news
 
 # from .view import get_categories, get_news, store_selected_categories, clear_cache
 
@@ -37,9 +37,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('categories/update_category_news/', update_category_news.as_view(), name='update_category_news'),
-    path('categories/get_Category_News/<str:category>', get_Category_News.as_view(), name='get_Category_News'),
-    path('categories/refresh_news/', refresh_news.as_view(), name='refresh_news'),
+    path('categories/update_category_news/', update_category_news, name='update_category_news'),
+    path('categories/get_Category_News/<str:category>', GetCategoryNewsView.as_view(), name='get_Category_News'),
+    path('categories/refresh_news/', refresh_news, name='refresh_news'),
     # path('news/', get_news, name='get_news'),
     # path('selected_categories/', store_selected_categories, name='store_selected_categories'),
     # path('clear_cache/', clear_cache, name='clear_cache'),

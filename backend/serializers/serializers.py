@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, User, PopularPreference
+from ..models import Category, User, PopularPreference
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
