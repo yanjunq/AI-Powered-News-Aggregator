@@ -4,12 +4,8 @@ This project is an AI-Powered News Aggregator app built with Expo and React Nati
 
 ## Getting Started
 
-### Install frontend dependencies 
-- npm install
-
 ### Start the Expo development server
 - npx expo start 
-
 
 ### Prerequisites
 
