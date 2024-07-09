@@ -11,16 +11,13 @@ This project is an AI-Powered News Aggregator app built with Expo and React Nati
 - npx expo start 
 
 
-## Features
-
-
 ### Prerequisites
 
 - Node.js
 - npm or yarn
 - Expo CLI: `npm install -g expo-cli`
 - Python and Django
-- mySQL
+- progresSQL
 - Redis
 
 
